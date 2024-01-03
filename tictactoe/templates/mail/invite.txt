@@ -1,0 +1,9 @@
+{% extends 'mail/base.txt' %}
+
+{% block title %}Join me for a game of TicTacToe!{% endblock %}
+
+{% block content %}
+Hey,
+
+Join me for a game of TicTacToe on {{ session_url }}
+{% endblock %}

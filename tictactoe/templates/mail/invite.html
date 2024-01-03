@@ -1,0 +1,8 @@
+{% extends 'mail/base.html' %}
+
+{% block title %}Join me for a game of TicTacToe!{% endblock %}
+
+{% block content %}
+<p>Hey,</p>
+<p>Join me for a game of TicTacToe on <a href="{{ session_url }}" target="_blank">{{ session_url }}</a></p>
+{% endblock %}

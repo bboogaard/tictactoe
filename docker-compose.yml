@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: tictactoe
+      PGDATA: ./data/db
+  web:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    command: python manage.py runserver 0.0.0.0:8000 --settings=settings.settings_docker
+    volumes:
+      - .:/apps
+      - ./data/data:/home
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

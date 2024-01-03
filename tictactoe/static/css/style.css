@@ -1,0 +1,94 @@
+/* Add some padding inside the card container */
+.container {
+  padding: 10px 16px;
+}
+
+/* Add rounded corners to the top left and the top right corner of the image */
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+.board {
+    width: 70%;
+    margin: auto;
+}
+
+.board-cell {
+    height: 200px;
+    padding-top: 70px;
+    font-size: 35px;
+    text-align: center;
+}
+
+.board-cell.left-top {
+    border-left: 2px solid;
+    border-top: 2px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.board-cell.center-top {
+    border-left: 1px solid;
+    border-top: 2px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.board-cell.right-top {
+    border-left: 1px solid;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 1px solid;
+}
+
+.board-cell.left-middle {
+    border-left: 2px solid;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.board-cell.center-middle {
+    border-left: 1px solid;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+}
+
+.board-cell.right-middle {
+    border-left: 1px solid;
+    border-top: 1px solid;
+    border-right: 2px solid;
+    border-bottom: 1px solid;
+}
+
+.board-cell.left-bottom {
+    border-left: 2px solid;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 2px solid;
+}
+
+.board-cell.center-bottom {
+    border-left: 1px solid;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 2px solid;
+}
+
+.board-cell.right-bottom {
+    border-left: 1px solid;
+    border-top: 1px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+}
+
+@media all and (max-width: 650px) {
+
+    .board-cell {
+        height: 70px;
+        padding-top: 20px;
+        font-size: 20px;
+    }
+
+}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="board">
+            <div style="text-align: center; padding-bottom: 25px">
+                <h2>TicTacToe</h2>
+            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Enter your name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <button type="submit" class="btn btn-default">Continue</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

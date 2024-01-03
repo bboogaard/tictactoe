@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="board">
+            <div style="text-align: center; padding-bottom: 25px">
+                <h2>TicTacToe</h2>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 board-cell left-top" id="cell-0-0"></div>
+                <div class="col-xs-4 board-cell center-top" id="cell-0-1"></div>
+                <div class="col-xs-4 board-cell right-top" id="cell-0-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 board-cell left-middle" id="cell-1-0"></div>
+                <div class="col-xs-4 board-cell center-middle" id="cell-1-1"></div>
+                <div class="col-xs-4 board-cell right-middle" id="cell-1-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 board-cell left-bottom" id="cell-2-0"></div>
+                <div class="col-xs-4 board-cell center-bottom" id="cell-2-1"></div>
+                <div class="col-xs-4 board-cell right-bottom" id="cell-2-2"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-9" style="padding-top: 20px">
+                    {% if session.owner.player_id == player.player_id %}
+                        <button class="btn btn-success" id="start"{% if game or not session.is_ready %} disabled{% endif %}>Start game by {{ symbol }}</button>
+                        {% if not session.is_ready %}
+                        <a class="btn btn-success" id="invite" href="{% url 'tictactoe:session_invite' session_id=session.session_id %}">Invite an opponent</a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="col-xs-3" style="padding-top: 20px">
+                    <table style="width: 100px">
+                        <tr>
+                            <th>{{ session.owner.name }}</th>
+                            <td id="owner-score">0</td>
+                        </tr>
+                        <tr>
+                            <th>{% if session.opponent %}{{ session.opponent.name }}{% else %}Opponent{% endif %}</th>
+                            <td id="opponent-score">0</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/providers.js' %}"></script>
+    <script src="{% static 'js/tictactoe.jquery.js' %}"></script>
+    <script type="application/javascript">
+    $(function () {
+        {% if session.owner.player_id == player.player_id %}
+        let provider = new OwnerProvider({
+            sessionHandlerUrl: "{{ session_handler_url }}",
+            gameHandlerUrl: "{{ game_handler_url }}",
+            isReady: {% if session.is_ready %}true{% else %}false{% endif %},
+            isActive: {% if game %}true{% else %}false{% endif %}
+        });
+        {% else %}
+        let provider = new OpponentProvider({
+            gameHandlerUrl: "{{ game_handler_url }}"
+        });
+        {% endif %}
+        $('.board').ticTacToe({
+            provider: provider
+        });
+    });
+    </script>
+
+{% endblock %}
